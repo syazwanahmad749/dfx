@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bottle · Diffusion FX Lab</title>
+    <meta
+      name="description"
+      content="Prototype workspace for assembling cinematic image prompts with tone-aware guidance."
+    />
+    <link rel="stylesheet" href="./assets/bottle.css" />
+  </head>
+  <body>
+    <main>
+      <header data-sparkle>
+        <h1>Bottle</h1>
+        <p class="header-lede">
+          Build a bottle of visual ideas: capture your narrative beat, curate the tone, and hand it off to the
+          diffusion models with confidence. Bottle keeps the creative intent while the machine handles the heavy
+          lifting.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#creator" data-open-creator>
+            <span>Launch the creator</span>
+          </a>
+          <a class="button secondary" href="./creation/">
+            <span>See workflow examples</span>
+          </a>
+        </div>
+      </header>
+
+      <section id="creator">
+        <div class="panel">
+          <h2>Compose a bottle brief</h2>
+          <p style="color: var(--text-muted); margin-top: 0.5rem;">
+            Describe the frame you want the models to paint. Start with the core subject, then enrich it with tone,
+            lighting, and production cues.
+          </p>
+
+          <form data-bottle-form style="margin-top: 2rem; display: grid; gap: 1.75rem;">
+            <div class="form-grid">
+              <label>
+                Bottle name
+                <input id="bottle-name" type="text" name="name" placeholder="Sunrise hero frame" autocomplete="off" />
+              </label>
+
+              <label>
+                Tone
+                <select id="bottle-tone" name="tone">
+                  <option value="Cinematic">Cinematic</option>
+                  <option value="Clean">Clean</option>
+                  <option value="Atmospheric" selected>Atmospheric</option>
+                  <option value="Playful">Playful</option>
+                  <option value="Experimental">Experimental</option>
+                </select>
+              </label>
+            </div>
+
+            <label>
+              Key guidance
+              <textarea
+                id="bottle-guidance"
+                name="guidance"
+                placeholder="Hero character standing waist-deep in neon-lit waves, camera at water level with shallow depth of field"
+              ></textarea>
+            </label>
+
+            <label>
+              Supporting highlights
+              <textarea
+                id="bottle-highlights"
+                name="highlights"
+                placeholder="Warm rim light, volumetric mist, lens flare just off frame"
+              ></textarea>
+            </label>
+
+            <div>
+              <h3 style="margin: 0 0 0.75rem;">Quick starts</h3>
+              <div class="hero-actions" data-flavour-buttons></div>
+            </div>
+
+            <div>
+              <button class="button primary" type="submit">Generate preview</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section>
+        <div class="grid two">
+          <div class="panel preview-card" data-sparkle>
+            <h3 data-preview-title>Bottle blueprint</h3>
+            <div class="tone-indicator" data-preview-tone>
+              <span style="background: #38bdf8"></span>
+              Select a tone
+            </div>
+            <p data-preview-guidance>
+              Describe what you would like Bottle to focus on and we will stitch the narrative beats together.
+            </p>
+            <p data-preview-highlights>
+              Add supporting cues, moods, or references to steer the generation.
+            </p>
+          </div>
+
+          <div class="panel">
+            <h3>Saved bottles</h3>
+            <p style="color: var(--text-muted); margin-bottom: 1rem;">
+              Every time you generate a preview we stash a copy here. Use them as reference cards when briefing your
+              favourite model runner.
+            </p>
+            <div class="saved-bottles" data-saved-bottles>
+              <p style="color: var(--text-muted);">No bottles yet — run the creator to capture your first brief.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="panel">
+          <h2 style="margin-top: 0;">How Bottle works</h2>
+          <div class="grid three" style="margin-top: 2rem;">
+            <article>
+              <h3>Distill the story beat</h3>
+              <p>
+                Bottle keeps the brief focused on the storytelling intent. Start with the subject and the emotion you
+                need on screen — the layout guides you toward the details that steer diffusion systems best.
+              </p>
+            </article>
+            <article>
+              <h3>Dial the tone</h3>
+              <p>
+                Swap between cinematic, clean, atmospheric, playful, or experimental tones. Each preset nudges colour and
+                lighting suggestions so your renders land closer to the art direction.
+              </p>
+            </article>
+            <article>
+              <h3>Shareable references</h3>
+              <p>
+                Export the generated copy blocks into your production notes, prompt history, or creative decks. Teams can
+                remix bottles and rapidly explore alternate treatments.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="panel">
+          <h2 style="margin-top: 0;">What creators are building</h2>
+          <div class="grid two" style="margin-top: 1.5rem;">
+            <article>
+              <h3>Storyboard sprint</h3>
+              <p>
+                Rapidly outline six hero frames for a teaser trailer. Bottle keeps the tone consistent while you iterate
+                on angles and lighting.
+              </p>
+            </article>
+            <article>
+              <h3>Look development</h3>
+              <p>
+                Art directors pair Bottle briefs with their favourite diffusion models to explore lighting recipes before
+                moving into 3D.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      Bottle is an experimental tool within the Diffusion FX lab stack. Share feedback with the team so we can keep
+      levelling it up.
+    </footer>
+
+    <script src="./assets/bottle.js" type="module"></script>
+  </body>
+</html>
