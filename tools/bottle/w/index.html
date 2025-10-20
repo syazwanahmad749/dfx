@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bottle Workspace</title>
+    <link rel="stylesheet" href="../assets/bottle.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Workspace mode</h1>
+        <p class="header-lede">
+          A lightweight viewer for presenting Bottle briefs inside review sessions or live calls.
+        </p>
+        <div class="hero-actions">
+          <a class="button secondary" href="../">Back to Bottle</a>
+        </div>
+      </header>
+
+      <section>
+        <div class="panel preview-card">
+          <h3 data-preview-title>Empty workspace</h3>
+          <div class="tone-indicator" data-preview-tone>
+            <span style="background: #38bdf8"></span>
+            Drop a Bottle to begin
+          </div>
+          <p data-preview-guidance>
+            Use the share menu in the Bottle creator to export a `.bottle.json` file and drag it anywhere on this page.
+          </p>
+          <p data-preview-highlights>We will render the tone, guidance, and highlights for easy reference.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      Need the full editor? <a class="button secondary" href="../">Launch Bottle</a>
+    </footer>
+
+    <script type="module">
+      const dropTarget = document.querySelector('.preview-card');
+      const title = document.querySelector('[data-preview-title]');
+      const tone = document.querySelector('[data-preview-tone]');
+      const guidance = document.querySelector('[data-preview-guidance]');
+      const highlights = document.querySelector('[data-preview-highlights]');
+
+      function renderBottle(data) {
+        title.textContent = data.name || 'Bottle import';
+        tone.innerHTML = `<span style="background: var(--accent)"></span>${data.tone || 'Custom tone'}`;
+        guidance.textContent = data.guidance || 'No guidance provided';
+        highlights.textContent = data.highlights || 'No highlights provided';
+      }
+
+      async function handleFile(file) {
+        try {
+          const text = await file.text();
+          const parsed = JSON.parse(text);
+          renderBottle(parsed);
+          dropTarget.classList.add('loaded');
+        } catch (error) {
+          alert('Unable to read bottle file. Please provide a valid JSON export.');
+        }
+      }
+
+      dropTarget.addEventListener('dragover', (event) => {
+        event.preventDefault();
+        dropTarget.style.borderColor = 'rgba(56, 189, 248, 0.6)';
+      });
+
+      dropTarget.addEventListener('dragleave', () => {
+        dropTarget.style.borderColor = 'rgba(148, 163, 184, 0.25)';
+      });
+
+      dropTarget.addEventListener('drop', (event) => {
+        event.preventDefault();
+        dropTarget.style.borderColor = 'rgba(148, 163, 184, 0.25)';
+        const file = event.dataTransfer.files?.[0];
+        if (file) handleFile(file);
+      });
+    </script>
+  </body>
+</html>
